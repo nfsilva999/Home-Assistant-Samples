@@ -1,0 +1,10 @@
+  - platform: template
+    sensors:
+      lounge_current_lights_on:
+        friendly_name: 'Number of lights on'
+        value_template: >
+          {% set lights = [
+            states.light.entrance_lamp,
+            states.light.corredor_piso_dois,
+            ] %}
+          {{ lights | selectattr('state','eq','on') | list | count }}
